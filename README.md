@@ -1,18 +1,51 @@
-# ELB with stickiness Example
+# ELB Terraform 
 
-The example launches a web server, installs nginx, creates an ELB for instance. It also creates security groups for the ELB and EC2 instance.
+The example is going to launch some resources for you and these are :
+
+* a web server 
+
+* installs nginx 
+
+* creates an ELB for instance 
+
+* Creates a security groups for the ELB and EC2 instance
+
+
+# Variables Used in this Templates 
+
+* key_name : your keypair name
+
+* aws_region : region you want use for setup
+
+* aws_amis : the ami of the os 
 
 
 To run, configure your AWS provider as described in https://www.terraform.io/docs/providers/aws/index.html
 
+We have four main Terraform commands to use , they are as :
 
-This example assumes you have created a Key Pair use:
-https://console.aws.amazon.com/ec2/v2/home 
+* terraform init
+* terraform plan
+* terraform apply
+* terraforn destroy 
 
+# Command Description 
 
-region=ap-south-1 #KeyPairs:sort=keyName to create a key if you do not have one.
+Let's see why these files are used:
 
-Run this example using commands :
+**terraform init**
+
+In order to initialise our working directory containing our terraform code.
+
+**terraform plan**
+
+It is used to preview our infrastructure prior to executing our terraform code.
+
+**terraform apply**
+
+It is used to apply all the changes specified in the plan into motion.
+
+let's apply them all:
 
 ```
 terraform init
@@ -26,9 +59,9 @@ terraform plan
 terraform apply -var 'key_name=YOUR_KEY_NAME'
 ```
 
+
 Alternatively to using `-var` with each command, the `terraform.template.tfvars` file can be copied to `terraform.tfvars` and updated.
 
-Wait a couple of minutes for the EC2 userdata to install nginx, and then type the ELB DNS Name from outputs in your browser and see the nginx welcome page.
 
 At last if you want to delete the resources to avoid unnecessary charges , you should use:
 
